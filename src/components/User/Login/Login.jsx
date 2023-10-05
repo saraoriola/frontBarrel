@@ -2,21 +2,35 @@ import React, { useEffect, useState } from 'react';
 import { Box, Grid, GridItem, VStack, FormControl, FormLabel, Input, Button, Text, Flex, Stack } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaFacebook, FaApple } from 'react-icons/fa';
-import Header from '../../Layout/Header/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, reset } from '../../../features/auth/authSlice';
 import { notification } from 'antd';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const { email, password } = formData;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError, isSuccess, message } = useSelector((state) => state.auth);
+
+  const { message, isSuccess, isError } = useSelector((state) => state.auth);
+  useEffect(() => {
+    if (isSuccess) {
+      notification.success({
+        message: message,
+      });
+      navigate("/");
+    }
+    if(isError){
+        notification.error({
+            message:message
+        })
+    }
+    dispatch(reset());
+  }, [message, isSuccess,isError]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -24,31 +38,13 @@ const Login = () => {
       [e.target.name]: e.target.value,
     }));
   };
-
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(login(formData));
   };
 
-  useEffect(() => {
-    if (isError) {
-      notification.error({
-        message: 'Error',
-        description: 'Fill the fields correctly. ' + message,
-      });
-    }
-
-    if (isSuccess) {
-      notification.success({ message: 'Login success', description: message });
-      navigate('/');
-    }
-
-    dispatch(reset());
-  }, [isError, isSuccess, message]);
-
   return (
     <Box bgColor="#262626" color="white">
-      <Header />
       <Grid templateColumns="1fr 1fr" gap={4} p={4} height="100vh">
         <GridItem colSpan={1}></GridItem>
         <GridItem colSpan={1}>

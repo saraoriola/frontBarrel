@@ -5,7 +5,6 @@ import { notification } from 'antd';
 import { register, reset } from "../../../features/auth/authSlice";
 import { FaApple, FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Header from "../../Layout/Header/Header";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -55,7 +54,6 @@ const Register = () => {
 
   return (
     <Box bgColor="#262626" color={"white"}>
-      <Header/>
     <Grid templateColumns="1fr 1fr" gap={4} p={4} height="100vh">
       <GridItem colSpan={1}>
         {/* Contenido de la primera columna */}

@@ -35,7 +35,7 @@ const GetStarted = () => {
               transition: 'border-color 0.3s ease-out, box-shadow 0.3s ease-out',
             }}
           >
-            Register
+            Registrate
           </Button>
         </Link>
         <ChakraLink as={Link} to="/login" textDecoration='none'>
