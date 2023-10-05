@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Box, Flex, Link, Button, chakra, Image } from '@chakra-ui/react';
+import { Box, Flex, Link, Button, chakra, Image, Avatar } from '@chakra-ui/react';
 import logoAll from "../../../assets/logoAll.png";
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const userAvatar = '/ruta-de-la-imagen-de-avatar.jpg'; 
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -18,13 +19,13 @@ const Header = () => {
         justifyContent="space-between" 
       >
         <Image src={logoAll} alt="Logo" h={14}/> 
-        <Nav isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
+        <Nav isLoggedIn={isLoggedIn} userAvatar={userAvatar} handleLogin={handleLogin} />
       </Flex>
     </Box>
   );
 };
 
-const Nav = ({ isLoggedIn, handleLogin }) => {
+const Nav = ({ isLoggedIn, userAvatar, handleLogin }) => {
   return (
     <chakra.nav>
       <Link mr={4}>Eventos</Link>
@@ -33,10 +34,12 @@ const Nav = ({ isLoggedIn, handleLogin }) => {
           <Link mr={4}>Contacto</Link>
           <Link mr={4}>Servicios</Link>
           <Link mr={4}>Mis reservas</Link>
+          <Avatar size="sm" src={userAvatar} alt="Avatar del usuario" />
         </>
-      ) : null}
-      <Link mr={4}>Sobre nosotros</Link>
-      <Link mr={4}>Contacto</Link>
+      ) : (
+        <Link mr={4}>Sobre nosotros</Link>
+      )}
+
       {isLoggedIn ? null : (
         <Button
           w="100px"
