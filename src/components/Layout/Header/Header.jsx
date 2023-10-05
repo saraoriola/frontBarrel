@@ -18,7 +18,7 @@ const Header = () => {
         align="center"
         justifyContent="space-between" 
       >
-        <Image src={logoAll} alt="Logo" h={14}/> 
+        <Image src={logoAll} alt="Logo" h={12}/> 
         <Nav isLoggedIn={isLoggedIn} userAvatar={userAvatar} handleLogin={handleLogin} />
       </Flex>
     </Box>
