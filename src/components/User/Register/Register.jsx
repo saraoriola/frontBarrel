@@ -1,37 +1,101 @@
-import React from 'react';
-import { Box, Flex, Image, VStack, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector,  } from "react-redux";
+import { Box, Flex, Image, VStack, FormControl, FormLabel, Input, Button, Text } from '@chakra-ui/react';
+import { notification } from 'antd';
+import { register, reset } from "../../../features/auth/authSlice";
 
 const Register = () => {
-  return (
-    <Flex height="100vh" bgColor={"#262626"}>
-      {/* Box de la imagen a la izquierda */}
-      <Box flex="1" backgroundImage="url(tu_ruta_de_imagen.jpg)" backgroundSize="cover">
-        {/* Contenido de la imagen */}
-        <VStack p="20px" color="white">
-          <h1>Imagen</h1>
-          <p>Texto o contenido de la imagen</p>
-        </VStack>
-      </Box>
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
 
-      {/* Box de registro a la derecha */}
-      <Box flex="1" background="#f2f2f2" display="flex" alignItems="center">
-        {/* Contenido del registro */}
-        <VStack p="20px" >
-          <h1>Registro</h1>
-          <form>
-            <FormControl id="name" isRequired>
+  const { name, email, password, password2 } = formData;
+  const { message, isSuccess, isError } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isSuccess) {
+      notification.success({
+        message: message,
+      });
+    }
+    if (isError) {
+      notification.error({
+        message: message,
+      });
+    }
+    dispatch(reset());
+  }, [message, isSuccess, isError]);
+
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      return notification.error({
+        message: "Error",
+        description: "Passwords do not match",
+      });
+    } else {
+      dispatch(register(formData));
+    }
+  };
+
+  return (
+    <Flex align="center" justify="center" minH="100vh">
+      <Box p={4} borderWidth={1} borderRadius="md" boxShadow="md" w="400px">
+        <VStack spacing={4}>
+          <Text fontSize="xl">Registro</Text>
+          <form onSubmit={onSubmit}>
+            <FormControl id="name">
               <FormLabel>Nombre</FormLabel>
-              <Input type="text" placeholder="Tu nombre" />
+              <Input
+                type="text"
+                name="name"
+                value={name}
+                onChange={onChange}
+                required
+              />
             </FormControl>
-            <FormControl id="email" isRequired>
+            <FormControl id="email">
               <FormLabel>Correo Electrónico</FormLabel>
-              <Input type="email" placeholder="tucorreo@example.com" />
+              <Input
+                type="email"
+                name="email"
+                value={email}
+                onChange={onChange}
+                required
+              />
             </FormControl>
-            <FormControl id="password" isRequired>
+            <FormControl id="password">
               <FormLabel>Contraseña</FormLabel>
-              <Input type="password" placeholder="Contraseña" />
+              <Input
+                type="password"
+                name="password"
+                value={password}
+                onChange={onChange}
+                required
+              />
             </FormControl>
-            <Button colorScheme="blue" type="submit" mt={4}>
+            <FormControl id="password2">
+              <FormLabel>Confirmar Contraseña</FormLabel>
+              <Input
+                type="password"
+                name="password2"
+                value={password2}
+                onChange={onChange}
+                required
+              />
+            </FormControl>
+            <Button type="submit" colorScheme="blue" w="100%">
               Registrarse
             </Button>
           </form>
