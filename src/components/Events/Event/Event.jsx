@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Box, Card, CardHeader, CardBody, CardFooter, Flex, Avatar, Text } from '@chakra-ui/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllEvents } from '../../../features/events/eventsSlice';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const Event = () => {
   const dispatch = useDispatch();
@@ -28,12 +29,13 @@ const Event = () => {
             </Flex>
           </CardHeader>
           <CardBody>
-            <Text fontSize='xs'>{event.description}</Text>
+            <Text fontSize='xs' color="white">{event.description}</Text>
           </CardBody>
-          <CardFooter justify='space-between' flexWrap='wrap'>
-            <Box display="flex" flexDirection="column">
-              <Text fontSize='md'>{event.title}</Text>
-              <Text fontSize='xs'>{event.location}</Text>
+          <CardFooter justify='space-between' flexDir='column'>
+            <Text fontSize='md' color="white">{event.title}</Text>
+            <Box display='flex' alignItems='center' mt={1}>
+              <FaMapMarkerAlt style={{ color: 'white' }} />
+              <Text ml={2} fontSize='xs' color="white">{event.location}</Text>
             </Box>
           </CardFooter>
         </Card>
