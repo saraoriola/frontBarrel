@@ -2,11 +2,11 @@ import axios from 'axios';
 
 const API_URL = "http://localhost:3001";
 
-const createBooking = async (id, token) => {
+const createBooking = async (id) => {
   try {
     const response = await axios.post(`${API_URL}/bookings/createBooking/${id}`, null, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: token,
       },
     });
     return response.data;

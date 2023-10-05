@@ -15,6 +15,7 @@ import { FiUsers, FiCalendar, FiInfo } from "react-icons/fi";
 
 import eventoBackground from "../../../assets/eventdet.jpg"; 
 import Header from "../../Layout/Header/Header";
+import Booking from "../../Bookings/Booking";
 
 const EventDetail = () => {
   const { id } = useParams();
@@ -66,26 +67,7 @@ const EventDetail = () => {
           </Text>
           <Text mt={4}>{event.description}</Text>
         </Box>
-        <Button
-          w="150px"
-          bg="transparent"
-          borderRadius="full"
-          borderColor="#99F5F2"
-          borderWidth="2px"
-          color="white"
-          _hover={{
-            borderColor: '#00FFFF',
-            boxShadow: '0 0 8px 0 #00FFFF',
-            transition: 'border-color 0.3s ease-out, box-shadow 0.3s ease-out',
-          }}
-          size="lg"
-          mt={4}
-          onClick={() => {
-
-          }}
-        >
-          Reservar
-        </Button>
+<Booking/>
       </Center>
 
 
