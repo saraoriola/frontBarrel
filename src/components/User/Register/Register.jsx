@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Grid, GridItem, VStack, FormControl, FormLabel, Input, Button, Text, Flex } from '@chakra-ui/react';
+import { Box, Grid, GridItem, VStack, FormControl, FormLabel, Input, Button, Text, Flex, Stack } from '@chakra-ui/react';
 import { notification } from 'antd';
 import { register, reset } from "../../../features/auth/authSlice";
+import { FaApple, FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import Header from "../../Layout/Header/Header";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -51,75 +54,145 @@ const Register = () => {
   };
 
   return (
+    <Box bgColor="#262626" color={"white"}>
+      <Header/>
     <Grid templateColumns="1fr 1fr" gap={4} p={4} height="100vh">
       <GridItem colSpan={1}>
-        {/* Contenido de la primera parte (50%) */}
-        {/* Puedes agregar cualquier contenido aquí */}
+        {/* Contenido de la primera columna */}
       </GridItem>
       <GridItem colSpan={1}>
-        {/* Contenido de la segunda parte (50%) */}
-        <Flex align="center" justify="center" minH="100vh">
-            <VStack spacing={4}>
-              <Text fontSize="xl">Registro</Text>
-              <form onSubmit={onSubmit}>
-                <FormControl id="name">
-                  <FormLabel>Nombre</FormLabel>
-                  <Input
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={onChange}
-                    required
-                  />
-                </FormControl>
-                <FormControl id="lastName">
-                  <FormLabel>Apellido</FormLabel>
-                  <Input
-                    type="text"
-                    name="lastName"
-                    value={lastName}
-                    onChange={onChange}
-                    required
-                  />
-                </FormControl>
-                <FormControl id="email">
-                  <FormLabel>Correo Electrónico</FormLabel>
-                  <Input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={onChange}
-                    required
-                  />
-                </FormControl>
-                <FormControl id="password">
-                  <FormLabel>Contraseña</FormLabel>
-                  <Input
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={onChange}
-                    required
-                  />
-                </FormControl>
-                <FormControl id="password2">
-                  <FormLabel>Confirmar Contraseña</FormLabel>
-                  <Input
-                    type="password"
-                    name="password2"
-                    value={password2}
-                    onChange={onChange}
-                    required
-                  />
-                </FormControl>
-                <Button type="submit" colorScheme="blue" w="100%">
-                  Registrarse
-                </Button>
-              </form>
-            </VStack>
+        <Flex mt={20} justify="center" minH="100vh">
+          <VStack spacing={4}>
+            <form onSubmit={onSubmit}>
+              <FormControl id="name" mb={4}>
+                <FormLabel>Nombre</FormLabel>
+                <Input
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={onChange}
+                  required
+                  w="600px"
+                  bg="transparent"
+                  borderRadius="full"
+                  borderColor="#99F5F2"
+                  borderWidth="2px"
+                  color="white"
+                  _hover={{
+                    borderColor: '#00FFFF',
+                    boxShadow: '0 0 8px 0 #00FFFF',
+                    transition: 'border-color 0.3s ease-out, box-shadow 0.3s ease-out',
+                  }}
+                />
+              </FormControl>
+              <FormControl id="lastName" mb={4}>
+                <FormLabel>Apellido</FormLabel>
+                <Input
+                  type="text"
+                  name="lastName"
+                  value={lastName}
+                  onChange={onChange}
+                  required
+                  w="600px"
+                  bg="transparent"
+                  borderRadius="full"
+                  borderColor="#99F5F2"
+                  borderWidth="2px"
+                  color="white"
+                  _hover={{
+                    borderColor: '#00FFFF',
+                    boxShadow: '0 0 8px 0 #00FFFF',
+                    transition: 'border-color 0.3s ease-out, box-shadow 0.3s ease-out',
+                  }}
+                />
+              </FormControl>
+              <FormControl id="email" mb={4}>
+                <FormLabel>Correo Electrónico</FormLabel>
+                <Input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={onChange}
+                  required
+                  w="600px"
+                  bg="transparent"
+                  borderRadius="full"
+                  borderColor="#99F5F2"
+                  borderWidth="2px"
+                  color="white"
+                  _hover={{
+                    borderColor: '#00FFFF',
+                    boxShadow: '0 0 8px 0 #00FFFF',
+                    transition: 'border-color 0.3s ease-out, box-shadow 0.3s ease-out',
+                  }}
+                />
+              </FormControl>
+              <FormControl id="password" mb={4}>
+                <FormLabel>Contraseña</FormLabel>
+                <Input
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                  required
+                  w="600px"
+                  bg="transparent"
+                  borderRadius="full"
+                  borderColor="#99F5F2"
+                  borderWidth="2px"
+                  color="white"
+                  _hover={{
+                    borderColor: '#00FFFF',
+                    boxShadow: '0 0 8px 0 #00FFFF',
+                    transition: 'border-color 0.3s ease-out, box-shadow 0.3s ease-out',
+                  }}
+                />
+              </FormControl>
+              <FormControl id="password2" mb={4}>
+                <FormLabel>Confirmar Contraseña</FormLabel>
+                <Input
+                  type="password"
+                  name="password2"
+                  value={password2}
+                  onChange={onChange}
+                  required
+                  w="600px"
+                  bg="transparent"
+                  borderRadius="full"
+                  borderColor="#99F5F2"
+                  borderWidth="2px"
+                  color="white"
+                  _hover={{
+                    borderColor: '#00FFFF',
+                    boxShadow: '0 0 8px 0 #00FFFF',
+                    transition: 'border-color 0.3s ease-out, box-shadow 0.3s ease-out',
+                  }}
+                />
+              </FormControl>
+              <Button mt={10} type="submit" backgroundColor={"white"} w="100%">
+                Registrarse
+              </Button>
+            </form>
+            <Text mt={4} mb={2} fontSize="sm">
+              <Link to="/login">¿Tienes una cuenta? Inicia sesión aquí</Link>
+            </Text>
+            <Text fontSize="sm">Regístrate con:</Text>
+            <Stack direction="row" spacing={2} align="center">
+              <Button mt={2} mb={2} color="black" marginLeft={2}>
+                <FaGoogle />
+              </Button>
+              <Button mt={2} mb={2} color="black" marginLeft={2}>
+                <FaFacebook />
+              </Button>
+              <Button mt={2} mb={2} color="black" marginLeft={2}>
+                <FaApple />
+              </Button>
+            </Stack>
+          </VStack>
         </Flex>
       </GridItem>
     </Grid>
+    </Box>
   );
 };
 
