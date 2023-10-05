@@ -62,7 +62,12 @@ const Home = () => {
               </Box>
             </Box>
           </GridItem>
-          <GridItem colSpan={1}></GridItem>
+          <GridItem colSpan={1}>
+            <Box bgColor={"black"}>
+Hola
+            </Box>
+          </GridItem>
+
         </Grid>
       </Box>
     </>
