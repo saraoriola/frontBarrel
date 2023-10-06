@@ -4,7 +4,7 @@ const API_URL = "http://localhost:3001";
 
 const createBooking = async (eventId) => {
   try {
-    const token = JSON.parse(localStorage.getItem('token')); // Asegúrate de tener un token válido
+    const token = JSON.parse(localStorage.getItem('token')); 
     const response = await axios.post(`${API_URL}/bookings/createBooking/${eventId}`, null, {
       headers: {
         Authorization: token,
