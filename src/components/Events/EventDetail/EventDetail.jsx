@@ -72,7 +72,6 @@ const EventDetail = () => {
 
 
       <HStack spacing={6} mt={6} ml={20} mr={20}>
-        {/* Box 1 - Número de Asistentes */}
         <Box flex="1" textAlign="center" borderWidth="1px" borderRadius="lg" borderColor="#262626" p={3} bgColor={"white"}>
           <Icon as={FiUsers} boxSize={8} mx="auto" mb={2} /> 
           <Heading size="md">Asistentes</Heading>

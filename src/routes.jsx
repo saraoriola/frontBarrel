@@ -4,6 +4,7 @@ import Register from "./components/User/Register/Register";
 import Home from "./components/Home/Home";
 import GetStarted from "./components/Layout/GetStarted/GetStarted";
 import EventDetail from "./components/Events/EventDetail/EventDetail";
+import Bookings from "./components/Bookings/MyBookings/Bookings";
 
 
 const routes = createBrowserRouter([
@@ -26,6 +27,10 @@ const routes = createBrowserRouter([
   {
     path: "/:id", 
     element: <EventDetail />,
+  },
+  {
+    path: "/myBookings", 
+    element: <Bookings />,
   },
 ]);
 

@@ -1,42 +1,36 @@
 import React, { useEffect } from 'react';
 import { createBooking } from '../../features/bookings/bookingsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { Button } from '@chakra-ui/react'; 
+import { useParams, useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { Button } from '@chakra-ui/react';
 
 const Booking = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Obtén la instancia de navigate
 
   const handleReserveClick = async () => {
     try {
       console.log('Comenzando la solicitud de reserva...');
-      
-      // Aquí puedes agregar un log para mostrar el eventId antes de la solicitud
       console.log('Event ID:', id);
-
-      // Realiza la solicitud de reserva
       await dispatch(createBooking(id));
-
-      // Si la solicitud es exitosa, muestra un mensaje de éxito
       console.log('Solicitud de reserva exitosa.');
+
+      // Navega a la página deseada después de la reserva exitosa
+      navigate('/myBookings'); // Reemplaza '/ruta-de-destino' con la URL a la que deseas navegar
     } catch (error) {
-      // Si hay un error, muestra un mensaje de error
       console.error('Error al crear la reserva:', error);
     }
   };
-  
 
   const { isError, isSuccess, message } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (isError) {
-      // Muestra un log y mensaje de error si isError es true
       console.error('Hubo un error:', message);
     }
 
     if (isSuccess) {
-      // Muestra un log y mensaje de éxito si isSuccess es true
       console.log('Éxito:', message);
     }
   }, [isError, isSuccess]);
