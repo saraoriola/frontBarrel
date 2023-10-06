@@ -3,9 +3,9 @@ import Event from './Event/Event';
 
 const Events = () => {
   return (
-<>
-<Event/>
-</>
+    <>
+      <Event />
+    </>
   );
 }
 
