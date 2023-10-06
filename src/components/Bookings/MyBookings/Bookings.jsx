@@ -15,7 +15,7 @@ import {
   Divider,
   useToast,
 } from '@chakra-ui/react';
-import { FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa'; // Importa los iconos
+import { FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa'; 
 import CancelBooking from './CancelBooking/CancelBooking';
 import logo from "../../../assets/eventotech.jpg";
 
