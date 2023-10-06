@@ -15,7 +15,9 @@ import {
   Divider,
   useToast,
 } from '@chakra-ui/react';
+import { FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa'; // Importa los iconos
 import CancelBooking from './CancelBooking/CancelBooking';
+import logo from "../../../assets/eventotech.jpg";
 
 const Bookings = () => {
   const dispatch = useDispatch();
@@ -38,7 +40,7 @@ const Bookings = () => {
         toast({
           title: 'Reserva cancelada con éxito',
           status: 'success',
-          duration: 3000, 
+          duration: 3000,
           isClosable: true,
         });
       } catch (error) {
@@ -46,7 +48,7 @@ const Bookings = () => {
           title: 'Error al cancelar la reserva',
           description: error.message || 'Ocurrió un error al cancelar la reserva',
           status: 'error',
-          duration: 5000, 
+          duration: 5000,
           isClosable: true,
         });
       }
@@ -63,11 +65,11 @@ const Bookings = () => {
       </Text>
       <Flex flexWrap="wrap" ml={8} mt={5}>
         {userBookings.map((booking) => {
-          console.log("booking.id:", booking.id); // Agrega este registro de consola
+          console.log("booking.id:", booking.id);
           return (
             <Card key={booking.id} maxW="sm" m="4">
               <Image
-                src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                src={logo}
                 alt="Imagen del evento"
                 borderRadius="lg"
                 m={5}
@@ -76,11 +78,15 @@ const Bookings = () => {
                 <Stack mt="6" spacing="3">
                   <Heading size="md">Reserva</Heading>
                   <Text>Estado: {booking.status}</Text>
-                  <Text>Descripción: {booking.description}</Text>
-                  <Heading size="md">Evento Asociado</Heading>
-                  <Text>Título del evento: {booking.Event.title}</Text>
-                  <Text>Fecha del evento: {booking.Event.date}</Text>
-                  <Text>Ubicación del evento: {booking.Event.location}</Text>
+                  <Text>{booking.Event.title}</Text>
+                  <Stack direction="row" align="center">
+                    <FaCalendarAlt /> 
+                    <Text>{new Date(booking.Event.date).toLocaleDateString()}</Text> 
+                  </Stack>
+                  <Stack direction="row" align="center">
+                    <FaMapMarkerAlt /> 
+                    <Text>{booking.Event.location}</Text>
+                  </Stack>
                 </Stack>
               </CardBody>
               <Divider />
