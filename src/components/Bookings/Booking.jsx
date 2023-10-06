@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { createBooking } from '../../features/bookings/bookingsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useParams, useNavigate } from 'react-router-dom'; 
 import { Button } from '@chakra-ui/react';
 
 const Booking = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Obtén la instancia de navigate
+  const navigate = useNavigate(); 
 
   const handleReserveClick = async () => {
     try {
@@ -16,8 +16,8 @@ const Booking = () => {
       await dispatch(createBooking(id));
       console.log('Solicitud de reserva exitosa.');
 
-      // Navega a la página deseada después de la reserva exitosa
-      navigate('/myBookings'); // Reemplaza '/ruta-de-destino' con la URL a la que deseas navegar
+   
+      navigate('/myBookings'); 
     } catch (error) {
       console.error('Error al crear la reserva:', error);
     }

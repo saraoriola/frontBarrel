@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyBookings } from '../../../features/bookings/bookingsSlice';
+import Header from '../../Layout/Header/Header';
 
 const Bookings = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const Bookings = () => {
 
   return (
     <div>
+      <Header/>
       <h1>Mis Reservas</h1>
       <ul>
         {userBookings.map((booking) => (
