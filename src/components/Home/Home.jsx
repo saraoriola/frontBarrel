@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Box, CardBody, CardFooter, CardHeader, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
+import { Avatar, AvatarBadge, Box, Button, CardBody, CardFooter, CardHeader, Flex, Grid, GridItem, Text, Wrap, WrapItem } from '@chakra-ui/react';
 import { Card } from '@chakra-ui/react';
 import evento from "../../assets/evento.png";
 import Badges from './Badges';
@@ -41,8 +41,44 @@ const Home = () => {
               <Box mt={5}><Events/></Box>
             </Box>
           </GridItem>
-          <GridItem colSpan={1}>
-            <Box bgColor={"black"}>Hola</Box>
+          <GridItem colSpan={1} ml={5} mr={5}>
+            <Box
+              bgColor={"#262626"}
+              borderRadius={20}
+              height="34vh"
+              display="flex"
+              flexDirection="column"
+              alignItems="center" 
+              justifyContent="center"
+            >
+<Avatar size='xl' name='P C' src='https://bit.ly/code-beast' />
+
+              <Text fontSize="lg" color="white" mt={2}>
+                {user.name} {user.surname}
+              </Text>
+              <Text fontSize="lg" color="white">
+                {user.email}
+              </Text>
+              <Button
+                mt={10}
+                ml={4}
+                w="150px"
+                bg="transparent"
+                borderRadius="full"
+                borderColor="#99F5F2"
+                borderWidth="2px"
+                color="white"
+                _hover={{
+                  borderColor: '#00FFFF',
+                  boxShadow: '0 0 8px 0 #00FFFF',
+                  transition: 'border-color 0.3s ease-out, box-shadow 0.3s ease-out',
+                }}
+              >
+                Ir a mi perfil
+              </Button>
+            </Box>
+            <Box mt={5}>
+            </Box>
           </GridItem>
         </Grid>
       </Box>

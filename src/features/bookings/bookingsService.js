@@ -32,9 +32,26 @@ const getMyBookings = async () => {
   }
 };
 
+const deleteBooking = async (bookingId) => {
+  try {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const response = await axios.delete(`${API_URL}/bookings/deleteBooking/${bookingId}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting booking:", error);
+    throw error;
+  }
+};
+
+
 const bookingsService = {
   createBooking,
   getMyBookings,
+  deleteBooking,
 };
 
 export default bookingsService;

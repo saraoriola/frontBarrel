@@ -3,6 +3,7 @@ import bookingsService from './bookingsService';
 
 const initialState = {
   creating: false,
+  deleting: false,
   error: null,
   userBookings: [], 
 };
@@ -28,6 +29,14 @@ export const getMyBookings = createAsyncThunk("bookings/getMyBookings", async ()
   }
 });
 
+export const deleteBooking = createAsyncThunk("bookings/deleteBooking", async (bookingId) => {
+  try {
+    return await bookingsService.deleteBooking(bookingId);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+});
 
 const bookingsSlice = createSlice({
     name: 'bookings',
@@ -58,6 +67,18 @@ const bookingsSlice = createSlice({
         })
         .addCase(getMyBookings.rejected, (state, action) => {
           state.creating = false;
+          state.error = action.error.message;
+        })
+        .addCase(deleteBooking.pending, (state) => {
+          state.deleting = true;
+          state.error = null;
+        })
+        .addCase(deleteBooking.fulfilled, (state) => {
+          state.deleting = false;
+          state.error = null;
+        })
+        .addCase(deleteBooking.rejected, (state, action) => {
+          state.deleting = false;
           state.error = action.error.message;
         });
     },
