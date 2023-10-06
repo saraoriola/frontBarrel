@@ -8,16 +8,17 @@ const initialState = {
 };
 
 
-export const createBooking = createAsyncThunk("bookings/createBooking", async ({id}) => {
+export const createBooking = createAsyncThunk(
+  'bookings/createBooking',
+  async (eventId, thunkAPI) => {
     try {
-      return await bookingsService.createBooking(id);
+      const response = await bookingsService.createBooking(eventId);
+      return response; 
     } catch (error) {
-      console.error(error);
-      throw error;
+      return thunkAPI.rejectWithValue(error.message || 'Error al crear la reserva');
     }
   }
 );
-
 export const getMyBookings = createAsyncThunk("bookings/getMyBookings", async () => {
   try {
     return await bookingsService.getMyBookings();
@@ -34,18 +35,18 @@ const bookingsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
       builder
-        .addCase(createBooking.pending, (state) => {
-          state.creating = true;
-          state.error = null;
-        })
-        .addCase(createBooking.fulfilled, (state, action) => {
-          state.creating = false;
-          state.error = null;
-        })
-        .addCase(createBooking.rejected, (state, action) => {
-          state.creating = false;
-          state.error = action.error.message; 
-        })
+      .addCase(createBooking.pending, (state) => {
+        state.creating = true;
+        state.error = null;
+      })
+      .addCase(createBooking.fulfilled, (state) => {
+        state.creating = false;
+        state.error = null;
+      })
+      .addCase(createBooking.rejected, (state, action) => {
+        state.creating = false;
+        state.error = action.payload;
+      })
         .addCase(getMyBookings.pending, (state) => {
           state.creating = true;
           state.error = null;

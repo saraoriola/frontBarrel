@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom'; 
-import { createBooking } from '../../features/bookings/bookingsSlice';
+import { createBooking } from '../../features/bookings/bookingsSlice'; 
 import { Button } from '@chakra-ui/react';
 
 const Booking = () => {
@@ -10,14 +10,18 @@ const Booking = () => {
   const navigate = useNavigate(); 
 
   const handleReserveClick = async () => {
-    try {
-      await dispatch(createBooking(id));
-      navigate('/myBookings'); 
-    } catch (error) {
-      console.error('Error al crear la reserva:', error);
+    if (typeof id === 'string' && !isNaN(Number(id))) { 
+      try {
+        await dispatch(createBooking(Number(id))); 
+        navigate('/myBookings');
+      } catch (error) {
+        console.error('Error al crear la reserva:', error);
+      }
+    } else {
+      console.error('ID de evento no válido:', id);
     }
   };
-
+  
   const { isError, isSuccess, message } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -33,3 +37,4 @@ const Booking = () => {
 };
 
 export default Booking;
+
